@@ -18,7 +18,7 @@ saddr.sin_family=AF_INET;
 saddr.sin_addr.s_addr=htonl(INADDR_ANY);
 saddr.sin_port=htons(5465);
 if(bind(sfd,(struct sockaddr*)&saddr,sizeof(saddr))<0)
-perror("Bind error");
+perror("Bind Error");
 listen(sfd,5);
 len=sizeof(&caddr);
 lfd=accept(sfd,(struct sockaddr*)&caddr,&len);
@@ -29,7 +29,7 @@ while(i<strlen(str))
 {
 memset(frame,0,20);
 strncpy(frame,str+i,SIZE);
-printf("Transmitting frame...");
+printf("Transmitting Frames...");
 len=strlen(frame);
 for(j=0;j<len;j++)
 {
@@ -40,14 +40,14 @@ strcat(frame,temp);
 printf("\n");
 write(lfd,frame,sizeof(frame));
 read(lfd,ack,20);
-scanf(ack,"%d",&status);
+sscanf(ack,"%d",&status);
 if(status==-1)
 printf("Transmission is successful\n");
 else
 {
-printf("Recived error in %d \n",status);
+printf("Recieved error in %d \n ",status);
 printf("\n\n Retransmitting frame");
-for(j=0;;)  //fix
+for(j=0 ;;)
 {
 frame[j]=str[j+status];
 printf("%d",j+status);
@@ -68,8 +68,7 @@ write(lfd,frame,sizeof(frame));
 i+=SIZE;
 }
 write(lfd,"Exit",sizeof("Exit"));
-printf("Exiting\n");
-sleep(2);
+printf("Exiting\n");sleep(2);
 close(lfd);
 close(sfd);
 }

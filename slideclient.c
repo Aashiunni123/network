@@ -26,7 +26,8 @@ printf("Exiting\n");
 break;
 }
 printf("\n\n Recieved %s\n Do you want to report error",str);
-scanf("%d",&choice);if(!choice)
+scanf("%d",&choice);
+if(!choice)
 write(sfd,"-1",sizeof("=1"));
 else
 {
@@ -38,4 +39,3 @@ printf("\n Recieved the retransmitted frames %s\n",str);
 }
 }
 }
-
